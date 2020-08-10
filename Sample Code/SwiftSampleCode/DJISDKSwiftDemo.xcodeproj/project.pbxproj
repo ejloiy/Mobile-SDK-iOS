@@ -8,13 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		238F549224D381B900B84EA3 /* VirtualSticksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238F549124D381B900B84EA3 /* VirtualSticksViewController.swift */; };
+		239725C224E08704002B3441 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239725C124E08704002B3441 /* MapViewController.swift */; };
+		239725C924E0B7CE002B3441 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C524E0B7B4002B3441 /* Mapbox.framework */; };
+		239725CA24E0B7CE002B3441 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C524E0B7B4002B3441 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		239725CC24E0B7D0002B3441 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */; };
+		239725CD24E0B7D0002B3441 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2F0FC85D21EDC06100D1C635 /* VideoPreviewerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC85C21EDC06100D1C635 /* VideoPreviewerAdapter.swift */; };
 		2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC85E21EDC81C00D1C635 /* CameraFPVViewController.swift */; };
 		2F0FC86C21EE058900D1C635 /* libDJIWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0FC86B21EE058900D1C635 /* libDJIWidget.a */; };
 		2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC86D21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift */; };
 		2F0FC87921F06D9B00D1C635 /* DistortionResource.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F0FC87821F06D9B00D1C635 /* DistortionResource.bundle */; };
+		47411108CC8234298A14F976 /* libPods-DJISDKSwiftDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BCAA1879195611B84E8CB86 /* libPods-DJISDKSwiftDemo.a */; };
 		51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AAFCD121FEB35900742997 /* DJIAlert.swift */; };
-		A1557083AB906DC1A214AFDB /* libPods-DJISDKSwiftDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7E8DEF306B5A65A27249FC8 /* libPods-DJISDKSwiftDemo.a */; };
 		A402788320AD473E0072809B /* FlightHubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A402788220AD473E0072809B /* FlightHubViewController.swift */; };
 		A47868D7209AC6DA00DBC666 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868C5209AC6DA00DBC666 /* AppDelegate.swift */; };
 		A47868D8209AC6DA00DBC666 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A47868C6209AC6DA00DBC666 /* Assets.xcassets */; };
@@ -29,9 +34,27 @@
 		A47868E2209AC6DA00DBC666 /* DJIImageAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		239725CB24E0B7CE002B3441 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				239725CD24E0B7D0002B3441 /* MapboxMobileEvents.framework in Embed Frameworks */,
+				239725CA24E0B7CE002B3441 /* Mapbox.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		128ABACC526C7880A0AB3F06 /* Pods-DJISDKSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJISDKSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DJISDKSwiftDemo/Pods-DJISDKSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		238F549124D381B900B84EA3 /* VirtualSticksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VirtualSticksViewController.swift; path = VirtualSticks/VirtualSticksViewController.swift; sourceTree = "<group>"; };
+		239725C124E08704002B3441 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = VirtualSticks/MapViewController.swift; sourceTree = "<group>"; };
+		239725C524E0B7B4002B3441 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxMobileEvents.framework; sourceTree = "<group>"; };
 		2F0FC85C21EDC06100D1C635 /* VideoPreviewerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewerAdapter.swift; sourceTree = "<group>"; };
 		2F0FC85E21EDC81C00D1C635 /* CameraFPVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFPVViewController.swift; sourceTree = "<group>"; };
 		2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIWidget-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -40,6 +63,7 @@
 		2F0FC87821F06D9B00D1C635 /* DistortionResource.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = DistortionResource.bundle; sourceTree = "<group>"; };
 		4B0C6B02B8D1383630F1B67E /* Pods-DJISDKSwiftDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJISDKSwiftDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DJISDKSwiftDemo/Pods-DJISDKSwiftDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		51AAFCD121FEB35900742997 /* DJIAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJIAlert.swift; sourceTree = "<group>"; };
+		7BCAA1879195611B84E8CB86 /* libPods-DJISDKSwiftDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DJISDKSwiftDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		86985CC91E834EC200577EC7 /* DJISDKSwiftDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DJISDKSwiftDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A402788220AD473E0072809B /* FlightHubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightHubViewController.swift; sourceTree = "<group>"; };
 		A47868C5209AC6DA00DBC666 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -54,7 +78,6 @@
 		A47868D3209AC6DA00DBC666 /* ProductCommunicationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCommunicationManager.swift; sourceTree = "<group>"; };
 		A47868D4209AC6DA00DBC666 /* StartupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartupViewController.swift; sourceTree = "<group>"; };
 		A47868D6209AC6DA00DBC666 /* DJIImageAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DJIImageAnnotation.swift; sourceTree = "<group>"; };
-		A7E8DEF306B5A65A27249FC8 /* libPods-DJISDKSwiftDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DJISDKSwiftDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,8 +85,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				239725CC24E0B7D0002B3441 /* MapboxMobileEvents.framework in Frameworks */,
 				2F0FC86C21EE058900D1C635 /* libDJIWidget.a in Frameworks */,
-				A1557083AB906DC1A214AFDB /* libPods-DJISDKSwiftDemo.a in Frameworks */,
+				47411108CC8234298A14F976 /* libPods-DJISDKSwiftDemo.a in Frameworks */,
+				239725C924E0B7CE002B3441 /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,8 +98,10 @@
 		0B6F263FBC093B7B6FB6EF51 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */,
+				239725C524E0B7B4002B3441 /* Mapbox.framework */,
 				2F0FC86B21EE058900D1C635 /* libDJIWidget.a */,
-				A7E8DEF306B5A65A27249FC8 /* libPods-DJISDKSwiftDemo.a */,
+				7BCAA1879195611B84E8CB86 /* libPods-DJISDKSwiftDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -83,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				238F549124D381B900B84EA3 /* VirtualSticksViewController.swift */,
+				239725C124E08704002B3441 /* MapViewController.swift */,
 			);
 			name = VirtualSticks;
 			sourceTree = "<group>";
@@ -210,6 +238,7 @@
 				86985CC71E834EC200577EC7 /* Resources */,
 				8A68B323F021A127CDC7173C /* [CP] Embed Pods Frameworks */,
 				8F1E40793F36999A928AAA10 /* [CP] Copy Pods Resources */,
+				239725CB24E0B7CE002B3441 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -348,6 +377,7 @@
 				A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */,
 				A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */,
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,
+				239725C224E08704002B3441 /* MapViewController.swift in Sources */,
 				2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +515,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../DJIWidget",
 					"\"$(SRCROOT)/../DJIWidget/FFmpeg\"",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/DJISDKSwiftDemo/Info.plist";
@@ -511,6 +542,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/../DJIWidget",
 					"\"$(SRCROOT)/../DJIWidget/FFmpeg\"",
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "$(SRCROOT)/DJISDKSwiftDemo/Info.plist";

@@ -629,6 +629,20 @@
                                     <action selector="changeYawControlMode:" destination="Pxd-4i-Efk" eventType="valueChanged" id="aXA-n9-X1Y"/>
                                 </connections>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ui-Ve-yGk">
+                                <rect key="frame" x="196" y="190" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="DK9-lE-el2"/>
+                                    <constraint firstAttribute="width" constant="150" id="o1y-tL-1DK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Map View" backgroundImage="btn">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="4os-Rq-rsh" kind="show" id="y1z-hP-5Ek"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -638,6 +652,7 @@
                             <constraint firstItem="A5D-Bw-eaS" firstAttribute="top" secondItem="nh1-iA-vbP" secondAttribute="bottom" constant="10" id="33c-4Q-jGs"/>
                             <constraint firstItem="vwg-9S-C9T" firstAttribute="leading" secondItem="WcZ-Fs-BkQ" secondAttribute="leadingMargin" constant="10" id="4pH-XU-pTX"/>
                             <constraint firstItem="xyw-1D-5l4" firstAttribute="top" secondItem="EZv-Sz-ryu" secondAttribute="bottom" constant="10" id="6Qw-Cz-oMA"/>
+                            <constraint firstItem="4ui-Ve-yGk" firstAttribute="leading" secondItem="Yhj-Ez-Wx5" secondAttribute="trailing" constant="20" id="6e6-kk-D7D"/>
                             <constraint firstItem="XDh-2c-dnA" firstAttribute="leading" secondItem="WcZ-Fs-BkQ" secondAttribute="leadingMargin" constant="10" id="8X9-RL-Fq2"/>
                             <constraint firstItem="Yhj-Ez-Wx5" firstAttribute="leading" secondItem="WcZ-Fs-BkQ" secondAttribute="leadingMargin" constant="10" id="ASs-fD-RWT"/>
                             <constraint firstItem="W02-BJ-Xqf" firstAttribute="leading" secondItem="WcZ-Fs-BkQ" secondAttribute="leadingMargin" constant="10" id="Ch0-Ok-rkd"/>
@@ -651,6 +666,7 @@
                             <constraint firstItem="SYf-Ex-f7P" firstAttribute="leading" secondItem="WcZ-Fs-BkQ" secondAttribute="leadingMargin" constant="10" id="Tzg-CU-M9O"/>
                             <constraint firstItem="EZv-Sz-ryu" firstAttribute="leading" secondItem="vwg-9S-C9T" secondAttribute="trailing" constant="20" id="Ub8-kr-sTD"/>
                             <constraint firstItem="vc0-Q8-6CX" firstAttribute="top" secondItem="W02-BJ-Xqf" secondAttribute="bottom" constant="10" id="YBM-zu-CAq"/>
+                            <constraint firstItem="4ui-Ve-yGk" firstAttribute="top" secondItem="xyw-1D-5l4" secondAttribute="bottom" constant="10" id="ZYB-Rr-KBQ"/>
                             <constraint firstItem="knf-gX-gHd" firstAttribute="leading" secondItem="WcZ-Fs-BkQ" secondAttribute="leadingMargin" constant="10" id="a58-ax-uRF"/>
                             <constraint firstItem="W02-BJ-Xqf" firstAttribute="top" secondItem="stj-S3-8Dl" secondAttribute="bottom" constant="25" id="eTS-D1-HoB"/>
                             <constraint firstItem="stj-S3-8Dl" firstAttribute="top" secondItem="SYf-Ex-f7P" secondAttribute="bottom" constant="10" id="eub-Ce-kHv"/>
@@ -665,6 +681,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irD-FP-mlT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2666" y="1833"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="45m-d3-BS4">
+            <objects>
+                <viewController id="4os-Rq-rsh" customClass="MapViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="j4L-Lj-HB2"/>
+                        <viewControllerLayoutGuide type="bottom" id="XpO-Oh-MYm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4gd-iN-0bZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="DrI-VS-czb"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fug-nQ-2OB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2769" y="2645"/>
         </scene>
         <!--CameraFPV View Controller-->
         <scene sceneID="YmE-Ft-7z4">

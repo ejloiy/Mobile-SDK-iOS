@@ -131,6 +131,7 @@ class VirtualSticksViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
     }
     
+    
     // Change the coordinate system between ground/body and observe the behavior
     // HIGHLY recommended to test first in the iOS simulator to observe the values in timerLoop and then test outdoors
     @IBAction func changeCoordinateSystem(_ sender: UISegmentedControl) {
@@ -241,4 +242,10 @@ class VirtualSticksViewController: UIViewController {
     
     
 
+}
+
+// Contains map specific code
+extension VirtualSticksViewController {
+    
+    
 }
