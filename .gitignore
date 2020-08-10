@@ -50,3 +50,6 @@ Carthage/Build
 
 build
 Output
+
+# Mapbox requires use_frameworks! for podfile so we opted to install the SDK manually
+Sample Code/SwiftSampleCode/Mapbox.framework/*
