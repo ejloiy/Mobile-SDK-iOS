@@ -13,6 +13,8 @@
 		239725CA24E0B7CE002B3441 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C524E0B7B4002B3441 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		239725CC24E0B7D0002B3441 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */; };
 		239725CD24E0B7D0002B3441 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		23E8E80D24E33160007B708D /* Resource in Resources */ = {isa = PBXBuildFile; fileRef = 23E8E80C24E33160007B708D /* Resource */; };
+		23E8E80F24E3397D007B708D /* DemoVirtualStickView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E8E80E24E3397D007B708D /* DemoVirtualStickView.swift */; };
 		2F0FC85D21EDC06100D1C635 /* VideoPreviewerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC85C21EDC06100D1C635 /* VideoPreviewerAdapter.swift */; };
 		2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0FC85E21EDC81C00D1C635 /* CameraFPVViewController.swift */; };
 		2F0FC86C21EE058900D1C635 /* libDJIWidget.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2F0FC86B21EE058900D1C635 /* libDJIWidget.a */; };
@@ -55,6 +57,8 @@
 		239725C124E08704002B3441 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = VirtualSticks/MapViewController.swift; sourceTree = "<group>"; };
 		239725C524E0B7B4002B3441 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		239725C724E0B7BB002B3441 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxMobileEvents.framework; sourceTree = "<group>"; };
+		23E8E80C24E33160007B708D /* Resource */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Resource; path = ../../ObjcSampleCode/DJISdkDemo/Resource; sourceTree = "<group>"; };
+		23E8E80E24E3397D007B708D /* DemoVirtualStickView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DemoVirtualStickView.swift; path = VirtualSticks/DemoVirtualStickView.swift; sourceTree = "<group>"; };
 		2F0FC85C21EDC06100D1C635 /* VideoPreviewerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPreviewerAdapter.swift; sourceTree = "<group>"; };
 		2F0FC85E21EDC81C00D1C635 /* CameraFPVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraFPVViewController.swift; sourceTree = "<group>"; };
 		2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DJIWidget-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 			children = (
 				238F549124D381B900B84EA3 /* VirtualSticksViewController.swift */,
 				239725C124E08704002B3441 /* MapViewController.swift */,
+				23E8E80E24E3397D007B708D /* DemoVirtualStickView.swift */,
 			);
 			name = VirtualSticks;
 			sourceTree = "<group>";
@@ -162,6 +167,7 @@
 		A47868C4209AC6DA00DBC666 /* DJISDKSwiftDemo */ = {
 			isa = PBXGroup;
 			children = (
+				23E8E80C24E33160007B708D /* Resource */,
 				A47868C5209AC6DA00DBC666 /* AppDelegate.swift */,
 				A47868C6209AC6DA00DBC666 /* Assets.xcassets */,
 				A47868CB209AC6DA00DBC666 /* BluetoothConnectorViewController.swift */,
@@ -292,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F0FC87921F06D9B00D1C635 /* DistortionResource.bundle in Resources */,
+				23E8E80D24E33160007B708D /* Resource in Resources */,
 				A47868DA209AC6DA00DBC666 /* Main.storyboard in Resources */,
 				A47868D8209AC6DA00DBC666 /* Assets.xcassets in Resources */,
 				A47868D9209AC6DA00DBC666 /* LaunchScreen.storyboard in Resources */,
@@ -374,6 +381,7 @@
 				A47868DB209AC6DA00DBC666 /* BluetoothConnectorViewController.swift in Sources */,
 				51AAFCD221FEB35900742997 /* DJIAlert.swift in Sources */,
 				A47868DE209AC6DA00DBC666 /* TimelineElementCollectionViewCell.swift in Sources */,
+				23E8E80F24E3397D007B708D /* DemoVirtualStickView.swift in Sources */,
 				A47868DD209AC6DA00DBC666 /* KeyedInterfaceViewController.swift in Sources */,
 				A47868DF209AC6DA00DBC666 /* TimelineMissionViewController.swift in Sources */,
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,

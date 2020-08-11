@@ -20,9 +20,13 @@ enum FLIGHT_MODE {
     case VERTICAL_ORBIT
     case VERTICAL_SINE_WAVE
     case HORIZONTAL_SINE_WAVE
+    case YAW
 }
 
 class VirtualSticksViewController: UIViewController {
+    
+    @IBOutlet weak var yawSlider: UISlider!
+    @IBOutlet weak var yawLabel: UILabel!
     
     var flightController: DJIFlightController?
     var timer: Timer?
@@ -32,6 +36,7 @@ class VirtualSticksViewController: UIViewController {
     var x: Float = 0.0
     var y: Float = 0.0
     var z: Float = 0.0
+    var yaw: Float = 0.0
     
     var flightMode: FLIGHT_MODE?
     
@@ -131,6 +136,12 @@ class VirtualSticksViewController: UIViewController {
         timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
     }
     
+    @IBAction func sendYaw() {
+        setupFlightMode()
+        flightMode = FLIGHT_MODE.YAW
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
+    }
     
     // Change the coordinate system between ground/body and observe the behavior
     // HIGHLY recommended to test first in the iOS simulator to observe the values in timerLoop and then test outdoors
@@ -165,6 +176,14 @@ class VirtualSticksViewController: UIViewController {
         }
     }
     
+    @IBAction func setYawAngularVelocity(_ slider: UISlider) {
+        
+        self.yaw = slider.value
+        yawLabel.text = "\(slider.value)"
+        
+    }
+    
+    
     // Timer loop to send values to the flight controller
     // It's recommend to run this in the iOS simulator to see the x/y/z values printed to the debug window
     @objc func timerLoop() {
@@ -178,22 +197,33 @@ class VirtualSticksViewController: UIViewController {
             x = cos(radians)
             y = 0
             z = 0
+            yaw = 0
         case .PITCH_FORWARD_BACK:
             x = 0
             y = sin(radians)
             z = 0
+            yaw = 0
         case .THROTTLE_UP_DOWN:
             x = 0
             y = 0
             z = sin(radians)
+            yaw = 0
         case .HORIZONTAL_ORBIT:
             x = cos(radians)
             y = sin(radians)
             z = 0
+            yaw = 0
         case .VERTICAL_ORBIT:
             x = cos(radians)
             y = 0
             z = sin(radians)
+            yaw = 0
+        case .YAW:
+            x = 0
+            y = 0
+            z = 0
+            
+            break
         case .VERTICAL_SINE_WAVE:
             break
         case .HORIZONTAL_SINE_WAVE:
@@ -202,14 +232,19 @@ class VirtualSticksViewController: UIViewController {
             break
         }
         
-        print("Sending x: \(x), y: \(y), z: \(z)")
+        sendControlData(x: x, y: y, z: z)
+        
+    }
+    
+    private func sendControlData(x: Float, y: Float, z: Float) {
+        print("Sending x: \(x), y: \(y), z: \(z), yaw: \(yaw)")
         
         // Construct the flight control data object
         var controlData = DJIVirtualStickFlightControlData()
         controlData.verticalThrottle = z
         controlData.roll = x
         controlData.pitch = y
-        controlData.yaw = 0
+        controlData.yaw = yaw
         
         // Send the control data to the FC
         self.flightController?.send(controlData, withCompletion: { (error: Error?) in
