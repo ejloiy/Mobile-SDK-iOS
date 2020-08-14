@@ -59,5 +59,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Placeholder</string>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoidW5tYW5uZWRhaXJsaW5lcyIsImEiOiJ3SUJNQUlVIn0.3aXngUlKaDtgk_KdBI4Ylw</string>
 </dict>
 </plist>
