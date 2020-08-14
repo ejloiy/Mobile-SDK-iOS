@@ -11,6 +11,7 @@
 
 import UIKit
 import DJISDK
+import CDJoystick
 
 enum FLIGHT_MODE {
     case ROLL_LEFT_RIGHT
@@ -27,6 +28,9 @@ class VirtualSticksViewController: UIViewController {
     
     @IBOutlet weak var yawSlider: UISlider!
     @IBOutlet weak var yawLabel: UILabel!
+    @IBOutlet weak var leftJoystick: CDJoystick!
+    @IBOutlet weak var rightJoystick: CDJoystick!
+    
     
     var flightController: DJIFlightController?
     var timer: Timer?
@@ -36,7 +40,7 @@ class VirtualSticksViewController: UIViewController {
     var x: Float = 0.0
     var y: Float = 0.0
     var z: Float = 0.0
-    var yaw: Float = 0.0
+    var yaw: Float = 10.0
     
     var flightMode: FLIGHT_MODE?
     
@@ -64,6 +68,21 @@ class VirtualSticksViewController: UIViewController {
                 self.flightController?.yawControlMode = DJIVirtualStickYawControlMode.angularVelocity
             }
             
+        }
+        
+        // Setup joysticks
+        // Throttle/yaw
+        leftJoystick.trackingHandler = { joystickData in
+            print(joystickData.velocity.x)
+            
+            self.yaw = Float(joystickData.velocity.x) * 30.0
+            
+            self.sendControlData(x: 0, y: 0, z: 0)
+        }
+        
+        // Pitch/roll
+        rightJoystick.trackingHandler = { joystickData in
+            print(joystickData.velocity.x)
         }
     }
     
@@ -140,7 +159,11 @@ class VirtualSticksViewController: UIViewController {
         setupFlightMode()
         flightMode = FLIGHT_MODE.YAW
         
-        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
+        //timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
+        
+        sendControlData(x: 0, y: 0, z: 0)
+        
+        timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(yawLoop), userInfo: nil, repeats: true)
     }
     
     // Change the coordinate system between ground/body and observe the behavior
@@ -183,6 +206,23 @@ class VirtualSticksViewController: UIViewController {
         
     }
     
+    var count = 0
+    
+    @objc func yawLoop() {
+        
+        sendControlData(x: x, y: y, z: z)
+        
+        // Based on 20 hz
+        if count > 60 {
+            self.timer?.invalidate()
+            self.count = 0
+            print("done counting")
+        }
+        
+        count = count + 1
+        
+    }
+    
     
     // Timer loop to send values to the flight controller
     // It's recommend to run this in the iOS simulator to see the x/y/z values printed to the debug window
@@ -197,7 +237,7 @@ class VirtualSticksViewController: UIViewController {
             x = cos(radians)
             y = 0
             z = 0
-            yaw = 0
+            //yaw = 0 let's see if this yaws while rolling
         case .PITCH_FORWARD_BACK:
             x = 0
             y = sin(radians)
