@@ -26,7 +26,6 @@ enum FLIGHT_MODE {
 
 class VirtualSticksViewController: UIViewController {
     
-    @IBOutlet weak var yawSlider: UISlider!
     @IBOutlet weak var yawLabel: UILabel!
     @IBOutlet weak var leftJoystick: CDJoystick!
     @IBOutlet weak var rightJoystick: CDJoystick!
@@ -40,7 +39,8 @@ class VirtualSticksViewController: UIViewController {
     var x: Float = 0.0
     var y: Float = 0.0
     var z: Float = 0.0
-    var yaw: Float = 10.0
+    var yaw: Float = 0.0
+    var yawSpeed: Float = 30.0
     
     var flightMode: FLIGHT_MODE?
     
@@ -73,11 +73,14 @@ class VirtualSticksViewController: UIViewController {
         // Setup joysticks
         // Throttle/yaw
         leftJoystick.trackingHandler = { joystickData in
-            print(joystickData.velocity.x)
+            self.yaw = Float(joystickData.velocity.x) * self.yawSpeed
             
-            self.yaw = Float(joystickData.velocity.x) * 30.0
+            let throttle = Float(joystickData.velocity.y) * 5.0
             
-            self.sendControlData(x: 0, y: 0, z: 0)
+            print("yaw speed: \(self.yaw)")
+            print("throttle speed \(throttle)")
+            
+            self.sendControlData(x: 0, y: 0, z: throttle)
         }
         
         // Pitch/roll
@@ -201,7 +204,7 @@ class VirtualSticksViewController: UIViewController {
     
     @IBAction func setYawAngularVelocity(_ slider: UISlider) {
         
-        self.yaw = slider.value
+        self.yawSpeed = slider.value
         yawLabel.text = "\(slider.value)"
         
     }
@@ -281,7 +284,7 @@ class VirtualSticksViewController: UIViewController {
         
         // Construct the flight control data object
         var controlData = DJIVirtualStickFlightControlData()
-        controlData.verticalThrottle = z
+        controlData.verticalThrottle = z // in m/s
         controlData.roll = x
         controlData.pitch = y
         controlData.yaw = yaw
