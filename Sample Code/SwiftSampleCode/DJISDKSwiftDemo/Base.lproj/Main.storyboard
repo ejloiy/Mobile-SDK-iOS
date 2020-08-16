@@ -923,9 +923,24 @@
                     <view key="view" contentMode="scaleToFill" id="WoX-i0-zA9">
                         <rect key="frame" x="0.0" y="0.0" width="736" height="370"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYR-xw-Pnf">
+                                <rect key="frame" x="48" y="-55" width="640" height="480"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cYR-xw-Pnf" secondAttribute="trailing" constant="48" id="Nta-fp-VLQ"/>
+                            <constraint firstItem="Cn1-Ok-At8" firstAttribute="top" secondItem="cYR-xw-Pnf" secondAttribute="bottom" constant="-55" id="Oi3-bw-ohk"/>
+                            <constraint firstItem="cYR-xw-Pnf" firstAttribute="leading" secondItem="WoX-i0-zA9" secondAttribute="leading" constant="48" id="r3M-I0-w4b"/>
+                            <constraint firstItem="cYR-xw-Pnf" firstAttribute="top" secondItem="fuh-s0-VCe" secondAttribute="bottom" constant="-55" id="uTF-g8-EBL"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rOV-DW-cu1"/>
+                    <connections>
+                        <outlet property="fpvView" destination="cYR-xw-Pnf" id="SD7-Sx-mPl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zbl-nh-Ebx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
