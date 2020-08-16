@@ -107,6 +107,9 @@ class FPVImageDetectorViewController: UIViewController, VideoFrameProcessor, DJI
                 bounds.origin.x += dx
                 bounds.origin.y += dy
                 
+                // Print the QR code string
+                print("QR Code: \(String(describing: code.messageString))")
+                
                 self.drawObjectBoundaries(bounds: bounds)
             }
             
