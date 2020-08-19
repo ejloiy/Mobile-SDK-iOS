@@ -41,6 +41,9 @@ class VirtualSticksViewController: UIViewController {
     var z: Float = 0.0
     var yaw: Float = 0.0
     var yawSpeed: Float = 30.0
+    var throttle: Float = 0.0
+    var roll: Float = 0.0
+    var pitch: Float = 0.0
     
     var flightMode: FLIGHT_MODE?
     
@@ -75,17 +78,17 @@ class VirtualSticksViewController: UIViewController {
         leftJoystick.trackingHandler = { joystickData in
             self.yaw = Float(joystickData.velocity.x) * self.yawSpeed
             
-            let throttle = Float(joystickData.velocity.y) * 5.0
+            self.throttle = Float(joystickData.velocity.y) * 5.0 * -1.0 // inverting joystick for throttle
             
-            print("yaw speed: \(self.yaw)")
-            print("throttle speed \(throttle)")
-            
-            self.sendControlData(x: 0, y: 0, z: throttle)
+            self.sendControlData(x: 0, y: 0, z: 0)
         }
         
         // Pitch/roll
         rightJoystick.trackingHandler = { joystickData in
-            print(joystickData.velocity.x)
+            
+            self.pitch = Float(joystickData.velocity.y) * 1.0
+            self.roll = Float(joystickData.velocity.x) * 1.0
+            self.sendControlData(x: 0, y: 0, z: 0)
         }
     }
     
@@ -284,9 +287,9 @@ class VirtualSticksViewController: UIViewController {
         
         // Construct the flight control data object
         var controlData = DJIVirtualStickFlightControlData()
-        controlData.verticalThrottle = z // in m/s
-        controlData.roll = x
-        controlData.pitch = y
+        controlData.verticalThrottle = throttle // in m/s
+        controlData.roll = roll
+        controlData.pitch = pitch
         controlData.yaw = yaw
         
         // Send the control data to the FC
