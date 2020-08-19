@@ -11,6 +11,7 @@ import UIKit
 class FPVImageDetectorViewController: UIViewController, VideoFrameProcessor, DJIVideoFeedListener {
     
     @IBOutlet weak var fpvView: UIView!
+    @IBOutlet weak var qrLabel: UILabel!
     
     let detector = CIDetector(
                  ofType: CIDetectorTypeQRCode,
@@ -19,10 +20,37 @@ class FPVImageDetectorViewController: UIViewController, VideoFrameProcessor, DJI
     )!
     
     var boundingBox: UIView?
+    
+    let imageWidth = 1024.0
+    let imageHeight = 768.0
+    var xScale = 1.0
+    var yScale = 1.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupVideoPreviewer()
+        
+        
+        let rect = CGRect(x: 50, y: 0, width: 10, height: 10)
+        self.boundingBox = UIView(frame: rect)
+        self.boundingBox?.layer.borderColor = UIColor.green.cgColor
+        self.boundingBox?.layer.borderWidth = 2
+        self.boundingBox?.backgroundColor = UIColor.clear
+        self.fpvView.addSubview(self.boundingBox!)
+        
+        print("Bounds: \(self.view.bounds)")
+        print("Frame: \(self.view.frame)")
+        
+        print("FPV View Bounds: \(self.fpvView.bounds)")
+        print("FPV View Frame: \(self.fpvView.frame)")
+        
+        self.xScale = self.imageWidth/Double(self.fpvView.bounds.width)
+        
+    }
+    
+    // Hide the nav bar
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,36 +112,17 @@ class FPVImageDetectorViewController: UIViewController, VideoFrameProcessor, DJI
         
         // Process asychronously
         DispatchQueue.global().async {
-            
-            //self.semaphore.wait()
-            
+
             let image = CIImage(cvPixelBuffer: pb)
             
-            let codes = self.detector.features(in: image) as? [CIQRCodeFeature]
+            let codes = self.detector.features(in: image)
             
-            let transformScale = CGAffineTransform(scaleX: 1, y: -1)
-            let transform = transformScale.translatedBy(x: 0, y: -image.extent.height)
-            
-            for code in codes! {
-                
-                var bounds = code.bounds.applying(transform)
-                let fpvViewSize = self.fpvView.bounds.size
-                let scale = min(fpvViewSize.width / image.extent.width, fpvViewSize.height / image.extent.height)
-                
-                let dx = (fpvViewSize.width - image.extent.width * scale) / 2
-                let dy = (fpvViewSize.height - image.extent.height * scale) / 2
-                
-                bounds.applying(CGAffineTransform(scaleX: scale, y: scale))
-                bounds.origin.x += dx
-                bounds.origin.y += dy
-                
-                // Print the QR code string
-                print("QR Code: \(String(describing: code.messageString))")
-                
-                self.drawObjectBoundaries(bounds: bounds)
+            // Enumerate the codes and update the text
+            for code in codes as! [CIQRCodeFeature] {
+                DispatchQueue.main.async {
+                    self.qrLabel.text = code.messageString
+                }
             }
-            
-            //self.semaphore.signal()
         }
     }
     
@@ -122,17 +131,20 @@ class FPVImageDetectorViewController: UIViewController, VideoFrameProcessor, DJI
     }
     // End VideoFrameProcessor delegate methods
     
-    // Draw
+    // Draw boundary - TBD
     private func drawObjectBoundaries(bounds: CGRect) {
         DispatchQueue.main.async {
-            print("Bounds are \(bounds)")
-            self.boundingBox = UIView(frame: bounds)
-            self.boundingBox?.layer.borderColor = UIColor.green.cgColor
-            self.boundingBox?.layer.borderWidth = 2
-            self.boundingBox?.backgroundColor = UIColor.clear
-            self.fpvView.addSubview(self.boundingBox!)
+            print(bounds)
+            // Moving the uiview
+            self.boundingBox?.bounds = bounds
+//            self.boundingBox = UIView(frame: bounds)
+//            self.boundingBox?.layer.borderColor = UIColor.green.cgColor
+//            self.boundingBox?.layer.borderWidth = 2
+//            self.boundingBox?.backgroundColor = UIColor.clear
+//            self.fpvView.addSubview(self.boundingBox!)
         }
     }
+
     
     // From here: https://stackoverflow.com/questions/58392433/change-buffer-format-of-djivideopreviewer
     private func createPixelBuffer(fromFrame frame: VideoFrameYUV) -> CVPixelBuffer? {
