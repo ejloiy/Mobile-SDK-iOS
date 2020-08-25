@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2340DA9124E9A99C00756FDA /* FPVImageDetectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2340DA9024E9A99C00756FDA /* FPVImageDetectorViewController.swift */; };
+		234683D424F3172700744C34 /* GameControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 234683D324F3172700744C34 /* GameControllerViewController.swift */; };
 		238F549224D381B900B84EA3 /* VirtualSticksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 238F549124D381B900B84EA3 /* VirtualSticksViewController.swift */; };
 		239725C224E08704002B3441 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 239725C124E08704002B3441 /* MapViewController.swift */; };
 		239725C924E0B7CE002B3441 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 239725C524E0B7B4002B3441 /* Mapbox.framework */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		128ABACC526C7880A0AB3F06 /* Pods-DJISDKSwiftDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DJISDKSwiftDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-DJISDKSwiftDemo/Pods-DJISDKSwiftDemo.release.xcconfig"; sourceTree = "<group>"; };
 		2340DA9024E9A99C00756FDA /* FPVImageDetectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPVImageDetectorViewController.swift; sourceTree = "<group>"; };
+		234683D324F3172700744C34 /* GameControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameControllerViewController.swift; sourceTree = "<group>"; };
 		238F549124D381B900B84EA3 /* VirtualSticksViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VirtualSticksViewController.swift; path = VirtualSticks/VirtualSticksViewController.swift; sourceTree = "<group>"; };
 		239725C124E08704002B3441 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = VirtualSticks/MapViewController.swift; sourceTree = "<group>"; };
 		239725C524E0B7B4002B3441 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
@@ -116,6 +118,14 @@
 				2340DA9024E9A99C00756FDA /* FPVImageDetectorViewController.swift */,
 			);
 			path = FPVImageDetector;
+			sourceTree = "<group>";
+		};
+		234683CF24F316C600744C34 /* GameController */ = {
+			isa = PBXGroup;
+			children = (
+				234683D324F3172700744C34 /* GameControllerViewController.swift */,
+			);
+			path = GameController;
 			sourceTree = "<group>";
 		};
 		238F549024D3819B00B84EA3 /* VirtualSticks */ = {
@@ -182,6 +192,7 @@
 				2F0FC86A21EDFFEE00D1C635 /* DJIWidget-Bridging-Header.h */,
 				A402788120AD473E0072809B /* FlightHub */,
 				2340DA8F24E9A97100756FDA /* FPVImageDetector */,
+				234683CF24F316C600744C34 /* GameController */,
 				A47868CC209AC6DA00DBC666 /* Info.plist */,
 				A47868CD209AC6DA00DBC666 /* KeyedInterfaces */,
 				A47868C7209AC6DA00DBC666 /* LaunchScreen.storyboard */,
@@ -395,6 +406,7 @@
 				2F0FC86E21EE1D0300D1C635 /* DecodeImageCalibrateLogic.swift in Sources */,
 				239725C224E08704002B3441 /* MapViewController.swift in Sources */,
 				2F0FC85F21EDC81C00D1C635 /* CameraFPVViewController.swift in Sources */,
+				234683D424F3172700744C34 /* GameControllerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

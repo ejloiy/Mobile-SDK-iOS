@@ -481,6 +481,30 @@
                                             <segue destination="Pxd-4i-Efk" kind="show" id="ehx-qm-O5g"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="T6q-pj-yQN">
+                                        <rect key="frame" x="0.0" y="460" width="736" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T6q-pj-yQN" id="eaI-nT-pj6">
+                                            <rect key="frame" x="0.0" y="0.0" width="736" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Controller" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ysr-U7-mJ5">
+                                                    <rect key="frame" x="16" y="11.666666666666664" width="692" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Ysr-U7-mJ5" firstAttribute="leading" secondItem="eaI-nT-pj6" secondAttribute="leadingMargin" constant="8" id="GFu-I1-glx"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Ysr-U7-mJ5" secondAttribute="trailing" constant="20" id="rEO-eC-2fs"/>
+                                                <constraint firstItem="Ysr-U7-mJ5" firstAttribute="centerY" secondItem="eaI-nT-pj6" secondAttribute="centerY" id="tFg-Gd-BNH"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="F8K-ci-GzZ" kind="show" id="Bhd-px-2HM"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -795,7 +819,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="irD-FP-mlT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2664.8000000000002" y="1832.833583208396"/>
+            <point key="canvasLocation" x="2499" y="2172"/>
         </scene>
         <!--Map View Controller-->
         <scene sceneID="45m-d3-BS4">
@@ -814,7 +838,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fug-nQ-2OB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2769" y="2645"/>
+            <point key="canvasLocation" x="2354" y="2829"/>
         </scene>
         <!--CameraFPV View Controller-->
         <scene sceneID="YmE-Ft-7z4">
@@ -912,6 +936,63 @@
             </objects>
             <point key="canvasLocation" x="3496" y="1290"/>
         </scene>
+        <!--Game Controller View Controller-->
+        <scene sceneID="Rif-fE-776">
+            <objects>
+                <viewController id="F8K-ci-GzZ" customClass="GameControllerViewController" customModule="DJISDKSwiftDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Vk-eW-gpv"/>
+                        <viewControllerLayoutGuide type="bottom" id="raH-Na-SnM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="G8e-rz-xSQ">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="370"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X8H-Sn-uaU">
+                                <rect key="frame" x="20" y="0.0" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="0sR-jD-lBD"/>
+                                    <constraint firstAttribute="height" constant="50" id="Yj6-eH-p4z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Enable Virtual Sticks" backgroundImage="btn">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="enableVirtualSticks:" destination="Pxd-4i-Efk" eventType="touchUpInside" id="1yf-rQ-lg8"/>
+                                    <action selector="enableVirtualSticks:" destination="F8K-ci-GzZ" eventType="touchUpInside" id="Qnp-Yl-us1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VPs-ab-vPc">
+                                <rect key="frame" x="20" y="60" width="150" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="BSj-6K-mqe"/>
+                                    <constraint firstAttribute="width" constant="150" id="sL2-BY-xtK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Disable Virtual Sticks" backgroundImage="btn">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="disableVirtualSticks:" destination="F8K-ci-GzZ" eventType="touchUpInside" id="EA9-da-jy3"/>
+                                    <action selector="enableVirtualSticks:" destination="Pxd-4i-Efk" eventType="touchUpInside" id="xDx-lG-zIB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="X8H-Sn-uaU" firstAttribute="top" secondItem="4Vk-eW-gpv" secondAttribute="bottom" id="AlE-ia-C6S"/>
+                            <constraint firstItem="VPs-ab-vPc" firstAttribute="top" secondItem="X8H-Sn-uaU" secondAttribute="bottom" constant="10" id="F6j-NQ-7ii"/>
+                            <constraint firstItem="X8H-Sn-uaU" firstAttribute="leading" secondItem="G8e-rz-xSQ" secondAttribute="leadingMargin" id="If2-qV-zhD"/>
+                            <constraint firstItem="VPs-ab-vPc" firstAttribute="leading" secondItem="G8e-rz-xSQ" secondAttribute="leadingMargin" id="n1o-rw-IPX"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fyl-iR-LeO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="faM-aI-3AT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3376" y="2109"/>
+        </scene>
         <!--Image Detector View Controller-->
         <scene sceneID="LXD-rS-FSH">
             <objects>
@@ -953,7 +1034,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zbl-nh-Ebx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3536" y="2619"/>
+            <point key="canvasLocation" x="3033" y="2878"/>
         </scene>
         <!--Flight Hub View Controller-->
         <scene sceneID="Dat-9a-hVj">
