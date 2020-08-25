@@ -528,7 +528,7 @@
                         <viewControllerLayoutGuide type="bottom" id="CIJ-dV-edz"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="WcZ-Fs-BkQ">
-                        <rect key="frame" x="0.0" y="0.0" width="736" height="370"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="knf-gX-gHd">
@@ -978,20 +978,31 @@
                                     <action selector="enableVirtualSticks:" destination="Pxd-4i-Efk" eventType="touchUpInside" id="xDx-lG-zIB"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GLc-yu-ocI">
+                                <rect key="frame" x="178" y="60" width="538" height="290"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="X8H-Sn-uaU" firstAttribute="top" secondItem="4Vk-eW-gpv" secondAttribute="bottom" id="AlE-ia-C6S"/>
+                            <constraint firstItem="GLc-yu-ocI" firstAttribute="trailing" secondItem="G8e-rz-xSQ" secondAttribute="trailingMargin" id="CrE-xe-uni"/>
                             <constraint firstItem="VPs-ab-vPc" firstAttribute="top" secondItem="X8H-Sn-uaU" secondAttribute="bottom" constant="10" id="F6j-NQ-7ii"/>
                             <constraint firstItem="X8H-Sn-uaU" firstAttribute="leading" secondItem="G8e-rz-xSQ" secondAttribute="leadingMargin" id="If2-qV-zhD"/>
+                            <constraint firstItem="raH-Na-SnM" firstAttribute="top" secondItem="GLc-yu-ocI" secondAttribute="bottom" constant="20" id="bso-Xn-7mu"/>
                             <constraint firstItem="VPs-ab-vPc" firstAttribute="leading" secondItem="G8e-rz-xSQ" secondAttribute="leadingMargin" id="n1o-rw-IPX"/>
+                            <constraint firstItem="GLc-yu-ocI" firstAttribute="top" secondItem="4Vk-eW-gpv" secondAttribute="bottom" constant="60" id="nmU-DZ-fNf"/>
+                            <constraint firstItem="GLc-yu-ocI" firstAttribute="leading" secondItem="VPs-ab-vPc" secondAttribute="trailing" constant="8" id="zXU-Ka-ndD"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fyl-iR-LeO"/>
+                    <connections>
+                        <outlet property="fpvView" destination="GLc-yu-ocI" id="Kxn-0B-z3r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="faM-aI-3AT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3376" y="2109"/>
+            <point key="canvasLocation" x="3375.8152173913045" y="2108.695652173913"/>
         </scene>
         <!--Image Detector View Controller-->
         <scene sceneID="LXD-rS-FSH">

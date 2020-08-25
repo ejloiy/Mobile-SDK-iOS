@@ -19,37 +19,65 @@ class GameControllerViewController: UIViewController {
     private var yaw: Float = 0
     private var throttle: Float = 0
     
+    @IBOutlet weak var fpvView: UIView!
+    var adapter: VideoPreviewerAdapter?
+    
     // Handles sending commands to flight controller
     var timer: Timer?
+    
+    //
+    var takeOffInProgress = false
+    var landInProgress = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        // Grab a reference to the aircraft
-//        if let aircraft = DJISDKManager.product() as? DJIAircraft {
-//
-//            // Grab a reference to the flight controller
-//            if let fc = aircraft.flightController {
-//
-//                // Store the flightController
-//                self.flightController = fc
-//
-//                // Default the coordinate system to ground
-//                self.flightController?.rollPitchCoordinateSystem = DJIVirtualStickFlightCoordinateSystem.ground
-//
-//                // Default roll/pitch control mode to velocity
-//                self.flightController?.rollPitchControlMode = DJIVirtualStickRollPitchControlMode.velocity
-//
-//                // Set control modes
-//                self.flightController?.yawControlMode = DJIVirtualStickYawControlMode.angularVelocity
-//            }
-//
-//        }
+        // Grab a reference to the aircraft
+        if let aircraft = DJISDKManager.product() as? DJIAircraft {
+
+            // Grab a reference to the flight controller
+            if let fc = aircraft.flightController {
+                // Store the flightController
+                self.flightController = fc
+                
+                // Default the coordinate system to ground
+                fc.rollPitchCoordinateSystem = DJIVirtualStickFlightCoordinateSystem.body
+
+                // Default roll/pitch control mode to velocity
+                fc.rollPitchControlMode = DJIVirtualStickRollPitchControlMode.velocity
+
+                // Set control modes
+                fc.yawControlMode = DJIVirtualStickYawControlMode.angularVelocity
+                
+            }
+            
+            // Setup the video preview
+            DJIVideoPreviewer.instance()?.start()
+            adapter = VideoPreviewerAdapter.init()
+            adapter?.start()
+
+        }
         
         // Listen for when a controller is connected or disconnected
         NotificationCenter.default.addObserver(self, selector: #selector(connectControllers), name: NSNotification.Name.GCControllerDidConnect, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(disconnectControllers), name: NSNotification.Name.GCControllerDidDisconnect, object: nil)
         connectControllers()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        DJIVideoPreviewer.instance()?.setView(fpvView)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // Call unSetView during exiting to release the memory.
+        DJIVideoPreviewer.instance()?.unSetView()
+
+        if adapter != nil {
+            adapter?.stop()
+            adapter = nil
+        }
     }
     
     @IBAction func enableVirtualSticks(_ sender: UIButton) {
@@ -62,29 +90,34 @@ class GameControllerViewController: UIViewController {
     
     // Handles enabling/disabling the virtual sticks
     private func toggleVirtualSticks(enabled: Bool) {
+        
+        print("Toggling virtual sticks")
             
-        // Let's set the VS mode
+        // Enable or disable the virtual sticks
         self.flightController?.setVirtualStickModeEnabled(enabled, withCompletion: { (error: Error?) in
             
             // If there's an error let's stop
-            guard error == nil else { return }
+            if (error != nil) {
+                print(error.debugDescription)
+                return
+            }
             
             print("Are virtual sticks enabled? \(enabled)")
             
+            // Begin the virtual stick timer
+            if (enabled) {
+
+                // Schedule the timer at 20Hz while the default specified for DJI is between 5 and 25Hz
+                self.timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(self.timerLoop), userInfo: nil, repeats: true)
+                
+            // Disable the virtual stick timer
+            } else {
+                
+                self.timer?.invalidate()
+                
+            }
+            
         })
-        
-        // Begin the virtual stick timer
-        if (enabled) {
-            
-            // Schedule the timer at 20Hz while the default specified for DJI is between 5 and 25Hz
-            timer = Timer.scheduledTimer(timeInterval: 0.05, target: self, selector: #selector(timerLoop), userInfo: nil, repeats: true)
-            
-        // Disable the virtual stick timer
-        } else {
-            
-            timer?.invalidate()
-            
-        }
         
     }
     
@@ -126,25 +159,57 @@ class GameControllerViewController: UIViewController {
         }
     }
     
+    // Enumerate controllers and setup handler for sticks/buttons
     func setupController(controller: GCController) {
         controller.extendedGamepad?.valueChangedHandler = { (gamepad: GCExtendedGamepad, element: GCControllerElement) in
             self.controllerInputDetected(gamepad: gamepad, element: element, index: controller.playerIndex.rawValue)
         }
     }
     
+    // Called when sticks are moved and buttons are pressed
     func controllerInputDetected(gamepad: GCExtendedGamepad, element: GCControllerElement, index: Int) {
         switch element {
+            
+        // Left thumbstick handles throttle and yaw
         case gamepad.leftThumbstick:
-            yaw = gamepad.leftThumbstick.xAxis.value * 30.0
-            print("Controller: \(index), LeftThumbstickXAxis: \(gamepad.leftThumbstick.xAxis.value)")
-            print("Controller: \(index), LeftThumbstickYAxis: \(gamepad.leftThumbstick.yAxis.value)")
+            yaw = gamepad.leftThumbstick.xAxis.value * 45.0
+            throttle = gamepad.leftThumbstick.yAxis.value * 3.0
+            
+        // Right thumbstick handles pitch and roll
         case gamepad.rightThumbstick:
-            print("Controller: \(index), RightThumbstickXAxis: \(gamepad.rightThumbstick.xAxis.value)")
-            print("Controller: \(index), RightThumbstickYAxis: \(gamepad.rightThumbstick.yAxis.value)")
+            roll = gamepad.rightThumbstick.yAxis.value * 3.0
+            pitch = gamepad.rightThumbstick.xAxis.value * 3.0
+            
+        // Take off with left trigger
         case gamepad.leftTrigger:
-            print("Land")
+            
+            // Trigger will fire multiple times and we only want to send the takeoff command once
+            if (!takeOffInProgress) {
+                print("Trying to takeoff")
+                takeOffInProgress = true
+                self.flightController?.startTakeoff(completion: { (error: Error?) in
+                    if error == nil {
+                        self.toggleVirtualSticks(enabled: true)
+                    } else {
+                        print("Error taking off")
+                    }
+                })
+            }
+            
+        // Land with right trigger
         case gamepad.rightTrigger:
-            print("Takeoff")
+            
+            if (!landInProgress) {
+                print("Trying to land")
+                landInProgress = true
+                self.flightController?.startLanding(completion: { (error: Error?) in
+                    if error == nil {
+                        self.toggleVirtualSticks(enabled: false)
+                    } else {
+                        print("Error landing")
+                    }
+                })
+            }
         default:
             print("Do nothing")
         }
