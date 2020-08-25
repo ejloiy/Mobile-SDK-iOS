@@ -30,7 +30,7 @@ class FPVImageDetectorViewController: UIViewController, VideoFrameProcessor, DJI
         super.viewDidLoad()
         setupVideoPreviewer()
         
-        
+        // This will be used at a later date to draw a square around the qr code
         let rect = CGRect(x: 50, y: 0, width: 10, height: 10)
         self.boundingBox = UIView(frame: rect)
         self.boundingBox?.layer.borderColor = UIColor.green.cgColor
