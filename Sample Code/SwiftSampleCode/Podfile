@@ -5,4 +5,5 @@ target 'DJISDKSwiftDemo' do
    pod 'DJI-SDK-iOS', '~> 4.15'
    pod 'DJIWidget', '~> 1.6.5'
    pod 'DJIFlySafeDatabaseResource', '~> 01.00.01.18'
+   pod 'CDJoystick'
 end
